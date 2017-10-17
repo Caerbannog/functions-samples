@@ -38,7 +38,7 @@ const CONFIG_SHEET_ID = functions.config().googleapi.sheet_id;
 const CONFIG_DATA_PATH = functions.config().watchedpaths.data_path;
 
 // The OAuth Callback Redirect.
-const FUNCTIONS_REDIRECT = `https://${process.env.GCLOUD_PROJECT}.firebaseapp.com/oauthcallback`;
+const FUNCTIONS_REDIRECT = `https://${process.env.GCLOUD_PROJECT}.firebaseapp.com/oauthcallback`; // https://us-central1-xxx.cloudfunctions.net/authgoogleapi
 
 // setup for authGoogleAPI
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
@@ -113,7 +113,7 @@ function appendPromise(requestWithoutAuth) {
 // checks if oauthTokens have been loaded into memory, and if not, retrieves them
 function getAuthorizedClient() {
   if (oauthTokens) {
-    return Promise.success(functionsOauthClient);
+    return Promise.resolve(functionsOauthClient);
   }
   return db.ref(DB_TOKEN_PATH).once('value').then(snapshot => {
     oauthTokens = snapshot.val();
