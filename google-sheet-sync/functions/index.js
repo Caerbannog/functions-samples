@@ -106,7 +106,10 @@ function appendPromise(requestWithoutAuth) {
         }
         return resolve(response);
       });
-    }).catch(() => reject());
+    }).catch((err) => {
+      console.log(`Unknown error: ${err}`); // This used to fail silently.
+      reject(err);
+    });
   });
 }
 
@@ -117,7 +120,7 @@ function getAuthorizedClient() {
   }
   return db.ref(DB_TOKEN_PATH).once('value').then(snapshot => {
     oauthTokens = snapshot.val();
-    functionsOauthClient.setCredentials(oauthTokens);
+    functionsOauthClient.credentials = oauthTokens;
     return functionsOauthClient;
   })
 }
