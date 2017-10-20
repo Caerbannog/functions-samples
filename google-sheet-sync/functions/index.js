@@ -38,7 +38,7 @@ const CONFIG_SHEET_ID = functions.config().googleapi.sheet_id;
 const CONFIG_DATA_PATH = functions.config().watchedpaths.data_path;
 
 // The OAuth Callback Redirect.
-const FUNCTIONS_REDIRECT = `https://us-central1-${process.env.GCLOUD_PROJECT}.cloudfunctions.com/oauthcallback`; // TODO: this might not be generic enough. The domain firebaseapp.com is also a possibility.
+const FUNCTIONS_REDIRECT = `https://us-central1-${process.env.GCLOUD_PROJECT}.cloudfunctions.net/oauthcallback`; // TODO: this might not be generic enough. The domain firebaseapp.com is also a possibility.
 
 // setup for authGoogleAPI
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
